@@ -61,7 +61,7 @@ $Language = new language();
 ```
 
 
-```js
+```pgp
 $Language = new language([
     "__basedir" => "./",
     "langFolder" => 'lang'
