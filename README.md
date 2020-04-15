@@ -60,7 +60,6 @@ Create the different sample files below in the language folder
 $Language = new language();
 ```
 
-
 ```pgp
 $Language = new language([
     "__basedir" => "./",
@@ -81,7 +80,6 @@ $Language = new language([
 
 ## Some Basic Configuration - Optional
 
-
 ```php
 // set your base directory
 $Language->setBaseDir("./"));
@@ -97,7 +95,6 @@ $Language->setExtention(".txt");
 ```
 
 ## Translation begin here
-
 
 ```php
 // set the language in which you need
@@ -157,8 +154,6 @@ const data = {
 }
 
 $Language->load('ar', data)
-
-
 ```
 
 ## Dynamic language template
