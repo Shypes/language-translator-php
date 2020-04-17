@@ -85,7 +85,7 @@ class language {
     function renderString($language, $template, $variables) {
         return preg_replace_callback('/\${(.+?)}/',
                  function($matches) use ($variables) {
-            return $variables[$matches[1]];
+            return   $this->gettext($variables[$matches[1]]);
         }, $template);
     }
 
