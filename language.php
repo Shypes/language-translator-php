@@ -66,14 +66,6 @@ class language {
         }
     }
 
-    function loadFolderLanguage($language, $data =array()){
-        $this->FolerLanguage[$this->option['langFolder']][$language] = $data;
-    }
-
-    function getFolderLanguage($language){
-        return $this->FolerLanguage[$this->option['langFolder']][$language];
-    }
-
     function getPath(){
         return $this->langPath;
     }
@@ -137,6 +129,18 @@ class language {
         return is_file("${file_path}/{$language}{$this->option['ext']}");
     }
 
+    function markAsLoaded($language){
+        $this->loadFolderLanguage($language);
+    }
+
+    function loadFolderLanguage($language, $data =array()){
+        $this->FolerLanguage[$this->option['langFolder']][$language] = $data;
+    }
+
+    function getFolderLanguage($language){
+        return $this->FolerLanguage[$this->option['langFolder']][$language];
+    }
+
     function loadFile($language){
         try {
             $file_path = $this->getPath();
@@ -154,7 +158,7 @@ class language {
                 $this->loadFolderLanguage($language, $this->loadFile($language));
                 $this->load($language, $this->getFolderLanguage($language));
             }else{
-                $this->loadFolderLanguage($language);
+                $this->markAsLoaded($language);
             }
         }
     }
