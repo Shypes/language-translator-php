@@ -105,5 +105,13 @@ $translated = $Language->get('deliver_code','en', ['name'=>"John", 'code'=> 3439
 
 var_dump($translated);
 
+$translated = $Language->get('deliver_code_me','ar', ['name'=>"John", 'code'=> 343923]);
+
+var_dump($translated);
+
+$translated = $Language->get('deliver_code_me','en', ['name'=>"John", 'code'=> 343923]);
+
+var_dump($translated);
+
 
 ?>

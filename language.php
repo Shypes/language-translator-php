@@ -66,7 +66,7 @@ class language {
         }
     }
 
-    function setFolderLanguage($language, $data =array()){
+    function loadFolderLanguage($language, $data =array()){
         $this->FolerLanguage[$this->option['langFolder']][$language] = $data;
     }
 
@@ -128,21 +128,33 @@ class language {
         $this->loadLanguage($this->active_lang);
     }
 
+    function hasLoadedLanguage($language){
+        return array_key_exists($language, $this->FolerLanguage[$this->option['langFolder']]);
+    }
+
+    function canLoad($language){
+        $file_path = $this->getPath();
+        return is_file("${file_path}/{$language}{$this->option['ext']}");
+    }
+
+    function loadFile($language){
+        try {
+            $file_path = $this->getPath();
+            return json_decode(file_get_contents("${file_path}/{$language}{$this->option['ext']}"),true);
+        } catch (Exception $e) {
+            return array();
+        }
+    }
+
     function loadLanguage($language){
         if ($this->load_from_file 
-        && !array_key_exists($language, $this->FolerLanguage[$this->option['langFolder']])
+        && !$this->hasLoadedLanguage($language)
         ) {
-            $file_path = $this->getPath();
-            $isFile = is_file("${file_path}/{$language}{$this->option['ext']}");
-            if($isFile){
-                try {
-                    $this->setFolderLanguage($language, json_decode(file_get_contents("${file_path}/{$language}{$this->option['ext']}"),true));
-                    $this->load($language, $this->getFolderLanguage($language));
-                } catch (Exception $e) {
-                    $this->setFolderLanguage($language);
-                }
+            if($this->canLoad($language)){ 
+                $this->loadFolderLanguage($language, $this->loadFile($language));
+                $this->load($language, $this->getFolderLanguage($language));
             }else{
-                $this->setFolderLanguage($language);
+                $this->loadFolderLanguage($language);
             }
         }
     }
