@@ -134,11 +134,19 @@ class language {
     }
 
     private function loadFolderLanguage($language, $data =array()){
-        $this->FolerLanguage[$this->option['langFolder']][$language] = $data;
+        if(is_array($data)){
+            $this->setPath();
+            $this->FolerLanguage[$this->option['langFolder']][$language] = $data;
+        }
     }
 
     private function getFolderLanguage($language){
-        return $this->FolerLanguage[$this->option['langFolder']][$language];
+        if (array_key_exists($this->option['langFolder'],$this->FolerLanguage)) {
+            if (array_key_exists($language, $this->FolerLanguage[$this->option['langFolder']])) {
+                return $this->FolerLanguage[$this->option['langFolder']][$language];
+            }
+        }
+        return array();
     }
 
     private function loadFile($language){
@@ -164,13 +172,15 @@ class language {
     }
 
     public function load($language, $data){
-        if (!array_key_exists($language, $this->LanguageData)) {
-            $this->LanguageData[$language] = $data;
-        }else{
-            $this->LanguageData[$language] = array_merge(
-                $this->LanguageData[$language], 
-                $data
-            );
+        if(is_array($data) && count($data) > 0){
+            if (!array_key_exists($language, $this->LanguageData)) {
+                $this->LanguageData[$language] = $data;
+            }else{
+                $this->LanguageData[$language] = array_merge(
+                    $this->LanguageData[$language], 
+                    $data
+                );
+            }
         }
     }
 }
