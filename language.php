@@ -61,6 +61,17 @@ class language {
 
     function setPath(){
         $this->langPath = $this->option['__basedir'] .'/'. $this->option['langFolder'];
+        if (!array_key_exists($this->option['langFolder'], $this->FolerLanguage)){
+            $this->FolerLanguage[$this->option['langFolder']] = array();
+        }
+    }
+
+    function setFolderLanguage($language, $data =array()){
+        $this->FolerLanguage[$this->option['langFolder']][$language] = $data;
+    }
+
+    function getFolderLanguage($language){
+        return $this->FolerLanguage[$this->option['langFolder']][$language];
     }
 
     function getPath(){
@@ -118,9 +129,6 @@ class language {
     }
 
     function loadLanguage($language){
-        if (!array_key_exists($this->option['langFolder'], $this->FolerLanguage)){
-            $this->FolerLanguage[$this->option['langFolder']] = array();
-        }
         if ($this->load_from_file 
         && !array_key_exists($language, $this->FolerLanguage[$this->option['langFolder']])
         ) {
@@ -128,22 +136,13 @@ class language {
             $isFile = is_file("${file_path}/{$language}{$this->option['ext']}");
             if($isFile){
                 try {
-                    if (!array_key_exists($language, $this->LanguageData)){
-                        $this->LanguageData[$language] = array();
-                    }
-
-                    $this->FolerLanguage[$this->option['langFolder']][$language] = json_decode(file_get_contents("${file_path}/{$language}{$this->option['ext']}"),true);
-
-                    $this->LanguageData[$language] = array_merge(
-                        $this->LanguageData[$language], 
-                        $this->FolerLanguage[$this->option['langFolder']][$language]
-                    );
-                    
+                    $this->setFolderLanguage($language, json_decode(file_get_contents("${file_path}/{$language}{$this->option['ext']}"),true));
+                    $this->load($language, $this->getFolderLanguage($language));
                 } catch (Exception $e) {
-                    $this->FolerLanguage[$this->option['langFolder']][$language] = array();
+                    $this->setFolderLanguage($language);
                 }
             }else{
-                $this->FolerLanguage[$this->option['langFolder']][$language] = array();
+                $this->setFolderLanguage($language);
             }
         }
     }
