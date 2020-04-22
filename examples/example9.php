@@ -17,7 +17,7 @@ $Language->load('en', [
     "deliver_code"=>"why ${name}, here is your me code ${code}"
 ]);
 
-// var_dump($Language->getPath());
+var_dump($Language->getPath());
 
 $translated = $Language->get('deliver_code', 'ar', ['name'=>"John", 'code'=> 343923]);
 
@@ -31,7 +31,7 @@ $Language->setLoadFromFile(true);
 
 $Language->setlanguageDir("lang/email");
 
-// var_dump($Language->getPath());
+var_dump($Language->getPath());
 
 $translated = $Language->get('deliver_code', 'ar', ['name'=>"John", 'code'=> 343923]);
 
@@ -43,7 +43,7 @@ var_dump($translated);
 
 $Language->setlanguageDir("lang");
 
-// var_dump($Language->getPath());
+var_dump($Language->getPath());
 
 $translated = $Language->get('deliver_code','ar', ['name'=>"John", 'code'=> 343923]);
 
@@ -55,7 +55,7 @@ var_dump($translated);
 
 $Language->setlanguageDir("lang/email");
 
-// var_dump($Language->getPath());
+var_dump($Language->getPath());
 
 $translated = $Language->get('deliver_code','ar', ['name'=>"John", 'code'=> 343923]);
 
@@ -73,6 +73,8 @@ $Language->load('en', [
     "deliver_code"=>"Hello ${name}, here is your me fuck ${code}"
 ]);
 
+var_dump($Language->getPath());
+
 $translated = $Language->get('deliver_code','ar', ['name'=>"John", 'code'=> 343923]);
 
 var_dump($translated);
@@ -83,7 +85,7 @@ var_dump($translated);
 
 $Language->setlanguageDir("lang");
 
-// var_dump($Language->getPath());
+var_dump($Language->getPath());
 
 $translated = $Language->get('deliver_code','ar', ['name'=>"John", 'code'=> 343923]);
 
@@ -95,7 +97,7 @@ var_dump($translated);
 
 $Language->setlanguageDir("lang/email");
 
-// var_dump($Language->getPath());
+var_dump($Language->getPath());
 
 $translated = $Language->get('deliver_code','ar', ['name'=>"John", 'code'=> 343923]);
 
