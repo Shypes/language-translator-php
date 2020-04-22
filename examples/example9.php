@@ -7,20 +7,66 @@ $Language = new language([
    "__basedir" =>  getcwd()
 ]);
 
-$Language->load('ar', [
-    "deliver_code"=>"مرحبًا ${name} ، إليك رمز otp ${code}"
-]);
+// $Language->setLoadFromFile(false);
 
-$Language->load('en', [
-    "deliver_code"=>"Hello ${name}, here is your otp code ${code}"
-]);
+// $Language->load('ar', [
+//     "deliver_code"=>"مرحبًا ${name} ، إليك رمز me ${code}"
+// ]);
+
+// $Language->load('en', [
+//     "deliver_code"=>"Hello ${name}, here is your me code ${code}"
+// ]);
+
+var_dump($Language->getPath());
 
 $translated = $Language->get('deliver_code', 'ar', ['name'=>"John", 'code'=> 343923]);
 
 var_dump($translated);
 
-$translated = $Language->get('deliver_code','en', ['name'=>"John", 'code'=> 343923]);
+// $translated = $Language->get('deliver_code','en', ['name'=>"John", 'code'=> 343923]);
+
+// var_dump($translated);
+
+
+$Language->setlanguageDir("lang/email");
+
+var_dump($Language->getPath());
+
+$translated = $Language->get('deliver_code', 'ar', ['name'=>"John", 'code'=> 343923]);
 
 var_dump($translated);
+
+$Language->setlanguageDir("lang");
+
+var_dump($Language->getPath());
+
+$translated = $Language->get('deliver_code','ar', ['name'=>"John", 'code'=> 343923]);
+
+var_dump($translated);
+
+$Language->setlanguageDir("lang/email");
+
+var_dump($Language->getPath());
+
+$translated = $Language->get('deliver_code','ar', ['name'=>"John", 'code'=> 343923]);
+
+var_dump($translated);
+
+$Language->setlanguageDir("lang");
+
+var_dump($Language->getPath());
+
+$translated = $Language->get('deliver_code','ar', ['name'=>"John", 'code'=> 343923]);
+
+var_dump($translated);
+
+$Language->load('ar', [
+    "deliver_code"=>"مرحبًا ${name} ، إليك رمز me ${code}"
+]);
+
+$translated = $Language->get('deliver_code','ar', ['name'=>"John", 'code'=> 343923]);
+
+var_dump($translated);
+
 
 ?>

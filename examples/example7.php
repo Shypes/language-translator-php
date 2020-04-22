@@ -8,8 +8,6 @@ function testTranslate ($language, $message) {
 
    $LangParser->setBaseDir(getcwd());
 
-   $LangParser->setBaseDir(__dirname);
-
    $translated =  $LangParser->translate($message, $language);
 
    $data = [
