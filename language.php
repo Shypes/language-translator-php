@@ -149,7 +149,7 @@ class language {
         return array();
     }
 
-    private function loadFile($language){
+    private function getFile($language){
         try {
             $file_path = $this->getPath();
             return json_decode(file_get_contents("${file_path}/{$language}{$this->option['ext']}"),true);
@@ -163,7 +163,7 @@ class language {
         && !$this->hasLoadedLanguage($language)
         ) {
             if($this->canLoad($language)){ 
-                $this->loadFolderLanguage($language, $this->loadFile($language));
+                $this->loadFolderLanguage($language, $this->getFile($language));
                 $this->load($language, $this->getFolderLanguage($language));
             }else{
                 $this->markAsLoaded($language);
