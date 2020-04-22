@@ -54,7 +54,7 @@ class language {
         }
     }
 
-    function setDefaultLang($language){
+    public function setDefaultLang($language){
         $this->option['default_lang'] = $language;
         $this->loaded = false;
     }
@@ -94,7 +94,7 @@ class language {
         }, $template);
     }
 
-    function translate ($text, $language=false, $param=array()){
+    public function translate ($text, $language=false, $param=array()){
         $this->init($language);
         return $this->text($text, $language, $param);
     }
