@@ -46,11 +46,13 @@ class language {
     }
 
     public function setlanguageDir($directory){
-        $this->option['langFolder'] = $directory;
-        $this->setPath();
-        $this->init(false);
-        foreach($this->FolerLanguage[$this->option['langFolder']] as $language => $data){
-            $this->load($language, $data);
+        if($this->option['langFolder'] != $directory){
+            $this->option['langFolder'] = $directory;
+            $this->setPath();
+            $this->init(false);
+            foreach($this->FolerLanguage[$this->option['langFolder']] as $language => $data){
+                $this->load($language, $data);
+            }
         }
     }
 
