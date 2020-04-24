@@ -4,7 +4,7 @@ class language {
 
     var $LanguageData = array();
     var $FolderLanguage = array();
-    var $safe_load = true;
+    var $safe_load = false;
 
     function __construct($options = array()) {
         $this->reset($options);
@@ -163,8 +163,9 @@ class language {
             return $data;
         }
         @error_log("Could not load language file: ${file_path}/{$language}{$this->option['ext']}", 0);
-        if ($this->safe_load == false)
+        if ($this->safe_load == false){
             echo "Could not load language file: ${file_path}/{$language}{$this->option['ext']}";die;
+        }
         return array();
     }
 
