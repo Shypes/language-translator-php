@@ -3,7 +3,7 @@
 class language {
 
     var $LanguageData = array();
-    var $FolerLanguage = array();
+    var $FolderLanguage = array();
 
     function __construct($options = array()) {
         $this->reset($options);
@@ -49,8 +49,8 @@ class language {
         if($this->option['langFolder'] != $directory){
             $this->option['langFolder'] = $directory;
             $this->setPath();
-            $this->init(false);
-            foreach($this->FolerLanguage[$this->option['langFolder']] as $language => $data){
+            $this->init($this->active_lang);
+            foreach($this->FolderLanguage[$this->option['langFolder']] as $language => $data){
                 $this->load($language, $data);
             }
         }
@@ -63,8 +63,8 @@ class language {
 
     private function setPath(){
         $this->langPath = $this->option['__basedir'] .'/'. $this->option['langFolder'];
-        if (!array_key_exists($this->option['langFolder'], $this->FolerLanguage)){
-            $this->FolerLanguage[$this->option['langFolder']] = array();
+        if (!array_key_exists($this->option['langFolder'], $this->FolderLanguage)){
+            $this->FolderLanguage[$this->option['langFolder']] = array();
         }
     }
 
@@ -123,7 +123,7 @@ class language {
     }
 
     private function hasLoadedLanguage($language){
-        return array_key_exists($language, $this->FolerLanguage[$this->option['langFolder']]);
+        return array_key_exists($language, $this->FolderLanguage[$this->option['langFolder']]);
     }
 
     private function canLoad($language){
@@ -138,26 +138,27 @@ class language {
     private function loadFolderLanguage($language, $data =array()){
         if(is_array($data)){
             $this->setPath();
-            $this->FolerLanguage[$this->option['langFolder']][$language] = $data;
+            $this->FolderLanguage[$this->option['langFolder']][$language] = $data;
         }
     }
 
     private function getFolderLanguage($language){
-        if (array_key_exists($this->option['langFolder'],$this->FolerLanguage)) {
-            if (array_key_exists($language, $this->FolerLanguage[$this->option['langFolder']])) {
-                return $this->FolerLanguage[$this->option['langFolder']][$language];
+        if (array_key_exists($this->option['langFolder'],$this->FolderLanguage)) {
+            if (array_key_exists($language, $this->FolderLanguage[$this->option['langFolder']])) {
+                return $this->FolderLanguage[$this->option['langFolder']][$language];
             }
         }
         return array();
     }
 
     private function getFile($language){
-        try {
-            $file_path = $this->getPath();
-            return json_decode(file_get_contents("${file_path}/{$language}{$this->option['ext']}"),true);
-        } catch (Exception $e) {
-            return array();
+        $file_path = $this->getPath();
+        $data =  @json_decode(file_get_contents("${file_path}/{$language}{$this->option['ext']}"),true);
+        if (json_last_error() === 0) {
+            return $data;
         }
+        @error_log("Could not load language file: ${file_path}/{$language}{$this->option['ext']}", 0);
+        return array();
     }
 
     private function loadLanguage($language){
