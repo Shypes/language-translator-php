@@ -4,6 +4,7 @@ class language {
 
     var $LanguageData = array();
     var $FolderLanguage = array();
+    var $safe_load = true;
 
     function __construct($options = array()) {
         $this->reset($options);
@@ -36,8 +37,8 @@ class language {
         $this->option['ext'] = $ext;
     }
 
-    public function setLoadFromFile($load){
-        $this->load_from_file = !$load ? false : true;
+    public function setLoadFromFile($is_load){
+        $this->load_from_file = !$is_load ? false : true;
     }
 
     public function setBaseDir($directory){
@@ -66,6 +67,10 @@ class language {
         if (!array_key_exists($this->option['langFolder'], $this->FolderLanguage)){
             $this->FolderLanguage[$this->option['langFolder']] = array();
         }
+    }
+
+    public function set_safe_load($is_safe){
+        $this->safe_load = !$is_safe ? false : true;
     }
 
     public function getPath(){
@@ -158,6 +163,8 @@ class language {
             return $data;
         }
         @error_log("Could not load language file: ${file_path}/{$language}{$this->option['ext']}", 0);
+        if ($this->safe_load == false)
+            echo "Could not load language file: ${file_path}/{$language}{$this->option['ext']}";die;
         return array();
     }
 
