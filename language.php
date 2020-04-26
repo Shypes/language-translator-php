@@ -4,7 +4,7 @@ class language {
 
     var $LanguageData = array();
     var $FolderLanguage = array();
-    var $safe_load = false;
+    var $safe_load = true;
 
     function __construct($options = array()) {
         $this->reset($options);
