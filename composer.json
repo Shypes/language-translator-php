@@ -1,0 +1,38 @@
+{
+    "name": "shypes/language-translator",
+    "type": "library",
+    "description": "This is a simple light weight language parser to help with language key translation built for speed using in-memory caching optimization technique.",
+    "keywords": [
+        "language",
+        "translator",
+        "translation",
+        "npm",
+        "package",
+        "template",
+        "dynamic",
+        "nodejs",
+        "node",
+        "parser",
+        "light weight",
+        "fast",
+        "simple",
+        "speed",
+        "in-memory",
+        "caching",
+        "optimization",
+        "shypes"
+      ],
+    "homepage": "https://github.com/Shypes/language-translator#readme",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tosin Adesipe",
+            "email": "adesipetosin@shypes.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Shypes\\": "src/"
+        }
+    }
+}

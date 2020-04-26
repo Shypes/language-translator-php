@@ -1,6 +1,8 @@
 <?php
 
-require_once("../language.php");
+require '../../vendor/autoload.php';
+
+use Shypes\language;
 
 $LangParser = new language();
 

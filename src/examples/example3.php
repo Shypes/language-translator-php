@@ -2,6 +2,8 @@
 
 require_once("../language.php");
 
+use Shypes\language;
+
 $LangParser = new language();
 
 $LangParser->setBaseDir(getcwd());

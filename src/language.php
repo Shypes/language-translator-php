@@ -1,5 +1,7 @@
 <?php
 
+namespace Shypes;
+
 class language {
 
     var $LanguageData = array();

@@ -2,6 +2,8 @@
 
 require_once("../language.php");
 
+use Shypes\language;
+
 function testTranslate ($language, $message) {
 
    $LangParser = new language();
