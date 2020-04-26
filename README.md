@@ -14,6 +14,12 @@ Language file only get loaded once during your application life cycle
 require_once("language.php");
 ```
 
+## Using Composer
+
+```$
+composer require shypes/language-translator
+```
+
 ## Usage
 
 Follow the set by step guide below
@@ -57,10 +63,14 @@ Create the different sample files below in the language folder
 ## Initilaise the Application
 
 ```php
+use Shypes\language;
+
 $Language = new language();
 ```
 
-```pgp
+```php
+use Shypes\language;
+
 $Language = new language([
     "__basedir" => "./",
     "langFolder" => 'lang'
@@ -70,6 +80,8 @@ $Language = new language([
 Loading with optional parameters
 
 ```php
+use Shypes\language;
+
 $Language = new language([
     "default_lang" => "en",
     "ext" => ".json",
@@ -117,6 +129,7 @@ var_dump($translated);
 ## Using a function
 
 ```php
+use Shypes\language;
 
 $Language = new language();
 
