@@ -1,6 +1,6 @@
 # @shypes/language-translator-php
 
-[![GitHub issues](https://img.shields.io/github/issues/Shypes/language-translator)](https://img.shields.io/github/issues/Shypes/language-translator)
+[![GitHub issues](https://img.shields.io/github/issues/Shypes/language-translator-php)](https://img.shields.io/github/issues/Shypes/language-translator-php)
 
 ## Introduction
 
