@@ -180,7 +180,7 @@ It also support **templated** json strings
 ```
 
 ```php
-$translated = Lang.get('deliver_code', 'ar', {'name':"John", 'code': 343923} )
+$translated = $Language->get('deliver_code', 'ar', {'name':"John", 'code': 343923} )
 
 var_dump($translated);
 ```
@@ -191,7 +191,27 @@ Output:
 مرحبًا John ، إليك رمز otp 343923
 ```
 
-Check out the [sample files](https://github.com/Shypes/language-translator/tree/master/examples) in the test directory
+## Switch between Language Folder
+
+```js
+$Language->setLanguageDir("lang/sms");
+
+var_dump($Language->getPath());
+
+translated = $Language->get('deliver_code','ar', {'name':"John", 'code': 343923});
+
+var_dump($translated);
+
+$Language->setLanguageDir("lang/email");
+
+var_dump($Language->getPath());
+
+translated = $Language->get('deliver_code','ar', {'name':"John", 'code': 343923});
+
+var_dump($translated);
+```
+
+Check out the [sample files](https://github.com/Shypes/language-translator-php/tree/master/src/examples) in the test directory
 
 ## License
 
