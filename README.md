@@ -115,13 +115,13 @@ $Language->setActiveLang('ar');
 
 // get the text base on the defined language key
 
-$translated = $Language->get('email_phone_validation')
+$translated = $Language->get('email_phone_validation');
 
 var_dump($translated);
 
 // get the text base on the defined language key
 
-$translated = Language.get('email_phone_validation', 'ar')
+$translated = Language.get('email_phone_validation', 'ar');
 
 var_dump($translated);
 ```
@@ -144,29 +144,29 @@ function testTranslate($language, $message) {
     ];
 
     var_dump($data);
-};
+}
 
-testTranslate('ar','something_went_wrong')
+testTranslate('ar','something_went_wrong');
 
-testTranslate('en','missing_required_validation')
+testTranslate('en','missing_required_validation');
 
-testTranslate('ar','email_phone_validation')
+testTranslate('ar','email_phone_validation');
 ```
 
 In line Langauge Loading Supported, this help you load your language data directly with a file
 
 ```php
 
-const data = {
-    "success": "نجاح",
-    "email_phone_validation": "لا يمكن أن يكون البريد الإلكتروني والهاتف فارغين",
-    "something_went_wrong": "هناك خطأ ما!",
-    "missing_required_validation": "الحقول المطلوبة مفقودة",
-    "missing_truck": "تم تعيين تجمع طلبات الشاحنات بالفعل على ${status}",
-    "deliver_code":"مرحبًا ${name} ، إليك رمز otp ${code}"
-}
+$data = array(
+    "success"=> "نجاح",
+    "email_phone_validation"=> "لا يمكن أن يكون البريد الإلكتروني والهاتف فارغين",
+    "something_went_wrong"=> "هناك خطأ ما!",
+    "missing_required_validation"=> "الحقول المطلوبة مفقودة",
+    "missing_truck"=> "تم تعيين تجمع طلبات الشاحنات بالفعل على ${status}",
+    "deliver_code"=>"مرحبًا ${name} ، إليك رمز otp ${code}"
+);
 
-$Language->load('ar', data)
+$Language->load('ar', $data);
 ```
 
 ## Dynamic language template
@@ -180,7 +180,7 @@ It also support **templated** json strings
 ```
 
 ```php
-$translated = $Language->get('deliver_code', 'ar', {'name':"John", 'code': 343923} )
+$translated = $Language->get('deliver_code', 'ar',  array('name'=>"John", 'code'=> 343923));
 
 var_dump($translated);
 ```
@@ -198,7 +198,7 @@ $Language->setLanguageDir("lang/sms");
 
 var_dump($Language->getPath());
 
-translated = $Language->get('deliver_code','ar', {'name':"John", 'code': 343923});
+$translated = $Language->get('deliver_code','ar', array('name'=>"John", 'code'=> 343923));
 
 var_dump($translated);
 
@@ -206,7 +206,7 @@ $Language->setLanguageDir("lang/email");
 
 var_dump($Language->getPath());
 
-translated = $Language->get('deliver_code','ar', {'name':"John", 'code': 343923});
+$translated = $Language->get('deliver_code','ar',  array('name'=>"John", 'code'=> 343923)});
 
 var_dump($translated);
 ```
